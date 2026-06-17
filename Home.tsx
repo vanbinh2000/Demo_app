@@ -77,18 +77,20 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     padding: 16,
+    marginTop:10,
   },
   title: {
     textAlign: 'center',
     fontSize: 20,
     fontWeight: '700',
-      marginBottom: 20,
+      marginBottom: 10,
     color:"blue"
   },
   company: {
     fontSize: 16,
     fontWeight: 'bold',
-    color:"red"
+    color: "red"
+    
   },
   section: {
     marginBottom: 15,
@@ -119,7 +121,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   totalSection: {
-    marginTop: 20,
+    marginTop: 10,
     gap: 6,
   },
   total: {
