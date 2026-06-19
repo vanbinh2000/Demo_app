@@ -1,142 +1,114 @@
 import React from 'react';
 import {
-  ScrollView,
   View,
   Text,
   StyleSheet,
+  TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 
-const InvoiceScreen = () => {
+const HomeScreen = () => {
   return (
     <ScrollView style={styles.container}>
-      <Text style={styles.title}>HÓA ĐƠN GIÁ TRỊ GIA TĂNG</Text>
+      {/* Header */}
+      <View style={styles.header}>
+        <Text style={styles.greeting}>Xin chào 👋</Text>
+        <Text style={styles.username}>Người dùng</Text>
+      </View>
 
-      <View style={styles.section}>
-        <Text style={styles.company}>
-          CÔNG TY TNHH ABC
+      {/* Banner */}
+      <View style={styles.banner}>
+        <Text style={styles.bannerTitle}>
+          Chào mừng đến với ứng dụng
         </Text>
-        <Text>MST: 0123456789</Text>
-        <Text>Địa chỉ: 123 Nguyễn Huệ, TP.HCM</Text>
-      </View>
-
-      <View style={styles.infoRow}>
-        <Text>Mẫu số: 01GTKT0/001</Text>
-        <Text>Ký hiệu: AA/25E</Text>
-      </View>
-
-      <View style={styles.infoRow}>
-        <Text>Số HĐ: 0000123</Text>
-        <Text>Ngày: 20/07/2025</Text>
-      </View>
-
-      <View style={styles.section}>
-        <Text style={styles.label}>Người mua hàng</Text>
-        <Text>Công ty XYZ</Text>
-        <Text>MST: 9876543210</Text>
-        <Text>Địa chỉ: Hà Nội</Text>
-      </View>
-
-      <View style={styles.tableHeader}>
-        <Text style={[styles.cell, { flex: 1 }]}>STT</Text>
-        <Text style={[styles.cell, { flex: 3 }]}>Tên hàng hóa</Text>
-        <Text style={[styles.cell, { flex: 2 }]}>SL</Text>
-        <Text style={[styles.cell, { flex: 3 }]}>Thành tiền</Text>
-      </View>
-
-      <View style={styles.tableRow}>
-        <Text style={[styles.cell, { flex: 1 }]}>1</Text>
-        <Text style={[styles.cell, { flex: 3 }]}>Laptop Dell</Text>
-        <Text style={[styles.cell, { flex: 2 }]}>2</Text>
-        <Text style={[styles.cell, { flex: 3 }]}>40.000.000</Text>
-      </View>
-
-      <View style={styles.totalSection}>
-        <Text>Tổng tiền hàng: 40.000.000 đ</Text>
-        <Text>Thuế GTGT (10%): 4.000.000 đ</Text>
-        <Text style={styles.total}>
-          Tổng thanh toán: 44.000.000 đ
+        <Text style={styles.bannerText}>
+          Đây là trang chủ được xây dựng bằng React Native.
         </Text>
       </View>
 
-      <View style={styles.signature}>
-        <Text>Người mua hàng</Text>
-        <Text>Người bán hàng</Text>
-      </View>
+      {/* Menu */}
+      <View style={styles.menuContainer}>
+        <TouchableOpacity style={styles.card}>
+          <Text style={styles.cardIcon}>📱</Text>
+          <Text style={styles.cardTitle}>Sản phẩm</Text>
+        </TouchableOpacity>
 
-      <View style={styles.qrBox}>
-        <Text>[ QR Code ]</Text>
+        <TouchableOpacity style={styles.card}>
+          <Text style={styles.cardIcon}>🛒</Text>
+          <Text style={styles.cardTitle}>Đơn hàng</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.card}>
+          <Text style={styles.cardIcon}>❤️</Text>
+          <Text style={styles.cardTitle}>Yêu thích</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.card}>
+          <Text style={styles.cardIcon}>⚙️</Text>
+          <Text style={styles.cardTitle}>Cài đặt</Text>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
 };
 
-export default InvoiceScreen;
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    padding: 16,
-    marginTop:10,
+    backgroundColor: '#F5F5F5',
   },
-  title: {
-    textAlign: 'center',
-    fontSize: 20,
-    fontWeight: '700',
-      marginBottom: 10,
-    color:"blue"
-  },
-  company: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: "red"
-    
-  },
-  section: {
-    marginBottom: 15,
-  },
-  label: {
-    fontWeight: '600',
-    marginBottom: 5,
-  },
-  infoRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 10,
-  },
-  tableHeader: {
-    flexDirection: 'row',
-    borderWidth: 1,
-    backgroundColor: 'gray',
-  },
-  tableRow: {
-    flexDirection: 'row',
-    borderLeftWidth: 1,
-    borderRightWidth: 1,
-    borderBottomWidth: 1,
-  },
-  cell: {
-    padding: 8,
-    borderRightWidth: 1,
-    textAlign: 'center',
-  },
-  totalSection: {
-    marginTop: 10,
-    gap: 6,
-  },
-  total: {
-    fontWeight: 'bold',
-    fontSize: 16,
-  },
-  signature: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 40,
-  },
-  qrBox: {
-    marginTop: 30,
-    alignItems: 'center',
-    borderWidth: 1,
+  header: {
+    backgroundColor: '#4F46E5',
     padding: 20,
+    paddingTop: 60,
+  },
+  greeting: {
+    color: '#fff',
+    fontSize: 18,
+  },
+  username: {
+    color: '#fff',
+    fontSize: 28,
+    fontWeight: 'bold',
+    marginTop: 5,
+  },
+  banner: {
+    backgroundColor: '#fff',
+    margin: 15,
+    padding: 20,
+    borderRadius: 15,
+    elevation: 3,
+  },
+  bannerTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  bannerText: {
+    marginTop: 8,
+    color: '#666',
+  },
+  menuContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    paddingHorizontal: 15,
+  },
+  card: {
+    width: '48%',
+    backgroundColor: '#fff',
+    padding: 20,
+    borderRadius: 15,
+    marginBottom: 15,
+    alignItems: 'center',
+    elevation: 2,
+  },
+  cardIcon: {
+    fontSize: 32,
+  },
+  cardTitle: {
+    marginTop: 10,
+    fontWeight: '600',
   },
 });
+
+export default HomeScreen;
