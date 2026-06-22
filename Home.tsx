@@ -1,114 +1,127 @@
-import React from 'react';
+import React from "react";
 import {
   View,
   Text,
   StyleSheet,
+  FlatList,
   TouchableOpacity,
-  ScrollView,
-} from 'react-native';
+  Alert,
+  SafeAreaView,
+} from "react-native";
 
-const HomeScreen = () => {
+type ItemType = {
+  id: string;
+  title: string;
+  description: string;
+};
+
+const DATA: ItemType[] = [
+  { id: "1", title: "Tin tức 1", description: "Nội dung tin tức 1" },
+  { id: "2", title: "Tin tức 2", description: "Nội dung tin tức 2" },
+  { id: "3", title: "Tin tức 3", description: "Nội dung tin tức 3" },
+  { id: "4", title: "Tin tức 4", description: "Nội dung tin tức 4" },
+];
+
+export default function HomeScreen() {
+  const onPressItem = (item: ItemType) => {
+    Alert.alert("Bạn chọn", item.title);
+  };
+
+  const renderItem = ({ item }: { item: ItemType }) => (
+    <TouchableOpacity
+      style={styles.card}
+      onPress={() => onPressItem(item)}
+    >
+      <Text style={styles.title}>{item.title}</Text>
+      <Text style={styles.desc}>{item.description}</Text>
+    </TouchableOpacity>
+  );
+
   return (
-    <ScrollView style={styles.container}>
+    <SafeAreaView style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <Text style={styles.greeting}>Xin chào 👋</Text>
-        <Text style={styles.username}>Người dùng</Text>
+        <Text style={styles.headerText}>🏠 Home Screen</Text>
       </View>
 
-      {/* Banner */}
-      <View style={styles.banner}>
-        <Text style={styles.bannerTitle}>
-          Chào mừng đến với ứng dụng
-        </Text>
-        <Text style={styles.bannerText}>
-          Đây là trang chủ được xây dựng bằng React Native.
-        </Text>
-      </View>
+      {/* List */}
+      <FlatList
+        data={DATA}
+        keyExtractor={(item) => item.id}
+        renderItem={renderItem}
+        contentContainerStyle={styles.list}
+      />
 
-      {/* Menu */}
-      <View style={styles.menuContainer}>
-        <TouchableOpacity style={styles.card}>
-          <Text style={styles.cardIcon}>📱</Text>
-          <Text style={styles.cardTitle}>Sản phẩm</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.card}>
-          <Text style={styles.cardIcon}>🛒</Text>
-          <Text style={styles.cardTitle}>Đơn hàng</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.card}>
-          <Text style={styles.cardIcon}>❤️</Text>
-          <Text style={styles.cardTitle}>Yêu thích</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.card}>
-          <Text style={styles.cardIcon}>⚙️</Text>
-          <Text style={styles.cardTitle}>Cài đặt</Text>
-        </TouchableOpacity>
-      </View>
-    </ScrollView>
+      {/* Floating Button */}
+      <TouchableOpacity
+        style={styles.fab}
+        onPress={() => Alert.alert("Thêm mới")}
+      >
+        <Text style={styles.fabText}>+</Text>
+      </TouchableOpacity>
+    </SafeAreaView>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: "#f5f6fa",
   },
+
   header: {
-    backgroundColor: '#4F46E5',
-    padding: 20,
-    paddingTop: 60,
+    backgroundColor: "#4a90e2",
+    padding: 16,
   },
-  greeting: {
-    color: '#fff',
-    fontSize: 18,
+
+  headerText: {
+    color: "#fff",
+    fontSize: 20,
+    fontWeight: "bold",
   },
-  username: {
-    color: '#fff',
-    fontSize: 28,
-    fontWeight: 'bold',
-    marginTop: 5,
+
+  list: {
+    padding: 16,
   },
-  banner: {
-    backgroundColor: '#fff',
-    margin: 15,
-    padding: 20,
-    borderRadius: 15,
+
+  card: {
+    backgroundColor: "#fff",
+    padding: 16,
+    borderRadius: 10,
+    marginBottom: 12,
+
+    shadowColor: "#000",
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
     elevation: 3,
   },
-  bannerTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
+
+  title: {
+    fontSize: 16,
+    fontWeight: "bold",
+    marginBottom: 4,
   },
-  bannerText: {
-    marginTop: 8,
-    color: '#666',
+
+  desc: {
+    fontSize: 13,
+    color: "#666",
   },
-  menuContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    paddingHorizontal: 15,
+
+  fab: {
+    position: "absolute",
+    bottom: 25,
+    right: 25,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: "#4a90e2",
+    justifyContent: "center",
+    alignItems: "center",
   },
-  card: {
-    width: '48%',
-    backgroundColor: '#fff',
-    padding: 20,
-    borderRadius: 15,
-    marginBottom: 15,
-    alignItems: 'center',
-    elevation: 2,
-  },
-  cardIcon: {
-    fontSize: 32,
-  },
-  cardTitle: {
-    marginTop: 10,
-    fontWeight: '600',
+
+  fabText: {
+    fontSize: 28,
+    color: "#fff",
+    fontWeight: "bold",
   },
 });
-
-export default HomeScreen;
