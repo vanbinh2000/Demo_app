@@ -38,7 +38,7 @@ export default function HomeScreen() {
   );
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
         <Text style={styles.headerText}>🏠 Home Screen</Text>
@@ -59,7 +59,7 @@ export default function HomeScreen() {
       >
         <Text style={styles.fabText}>+</Text>
       </TouchableOpacity>
-    </SafeAreaView>
+    </View>
   );
 }
 
